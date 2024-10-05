@@ -1,97 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grofers Checkout</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-
-      h1 {
-        text-align: center;
-      }
-
-      table {
-        width: 50%;
-        margin: 0 auto;
-        border-collapse: collapse;
-      }
-
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-      }
-
-      th {
-        background-color: #f4f4f4;
-      }
-
-      button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-      }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .total-row {
+            font-weight: bold;
+            background-color: #e0e0e0;
+        }
     </style>
-  </head>
-  <body>
-    <h1>Grocery List</h1>
+</head>
+<body>
 
-    <table id="groceryTable">
-      <thead>
+<h1>Grocery List</h1>
+<table id="groceryTable">
+    <thead>
         <tr>
-          <th>Item</th>
-          <th>Price</th>
+            <th>Item</th>
+            <th>Price</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr class="item">
-          <td>Apple</td>
-          <td class="prices">2</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="item">Apple</td>
+            <td class="prices">1.50</td>
         </tr>
-        <tr class="item">
-          <td>Banana</td>
-          <td class="prices">10</td>
+        <tr>
+            <td class="item">Banana</td>
+            <td class="prices">0.80</td>
         </tr>
-        <tr class="item">
-          <td>Milk</td>
-          <td class="prices">50</td>
+        <tr>
+            <td class="item">Orange</td>
+            <td class="prices">1.20</td>
         </tr>
-      </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <button onclick="calculateTotal()">Calculate Total</button>
+<button id="calculateTotal">Calculate Total</button>
 
-    <script>
-      function calculateTotal() {
-        // Get all price elements from the table
-        const priceElements = document.querySelectorAll(".prices");
-
+<script>
+    document.getElementById('calculateTotal').addEventListener('click', () => {
+        const prices = document.querySelectorAll('.prices');
         let total = 0;
 
-        // Sum up the prices
-        priceElements.forEach((priceElement) => {
-          total += parseFloat(priceElement.textContent);
+        prices.forEach(priceCell => {
+            const price = parseFloat(priceCell.textContent);
+            if (!isNaN(price)) {
+                total += price;
+            }
         });
 
+        // Remove any existing total row before adding a new one
+        const existingTotalRow = document.querySelector('.total-row');
+        if (existingTotalRow) {
+            existingTotalRow.remove();
+        }
+
         // Create a new row for the total
-        const table = document.getElementById("groceryTable");
-        const totalRow = document.createElement("tr");
+        const totalRow = document.createElement('tr');
+        totalRow.className = 'total-row';
+        totalRow.innerHTML = `<td>Total</td><td>${total.toFixed(2)}</td>`;
 
-        // Create a single cell to display the total price
-        const totalCell = document.createElement("td");
-        totalCell.colSpan = 2; // This spans across two columns
-        totalCell.textContent = `Total Price: ₹${total}`;
+        // Append the total row to the table body
+        document.querySelector('#groceryTable tbody').appendChild(totalRow);
+    });
+</script>
 
-        // Add the new cell to the row and append the row to the table
-        totalRow.appendChild(totalCell);
-        table.appendChild(totalRow);
-      }
-    </script>
-  </body>
+</body>
 </html>

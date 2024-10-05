@@ -1,7 +1,9 @@
+
+
 // Function to calculate total price
 function calculateTotalPrice() {
     // Get all price elements
-    const prices = document.querySelectorAll('.prices');
+    const prices = document.querySelectorAll('.price');
 
     // Initialize total price
     let totalPrice = 0;
@@ -28,7 +30,3 @@ function calculateTotalPrice() {
 // Call function to calculate and display total price
 calculateTotalPrice();
 
-// Update total price when values change
-document.querySelectorAll('.prices').forEach((price) => {
-    price.addEventListener('input', calculateTotalPrice);
-});

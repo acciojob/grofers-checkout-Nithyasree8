@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grocery List</title>
+    <title>Grocery Checkout</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
         table {
-            width: 50%;
+            width: 60%;
             border-collapse: collapse;
-            margin: 20px auto;
+            margin: 20px 0;
         }
         th, td {
             border: 1px solid #ccc;
@@ -26,8 +30,8 @@
 </head>
 <body>
 
-<h1>Grocery List</h1>
-<table id="groceryTable">
+<h1>Grocery Checkout</h1>
+<table id="checkoutTable">
     <thead>
         <tr>
             <th>Item</th>
@@ -37,15 +41,15 @@
     <tbody>
         <tr>
             <td class="item">Apple</td>
-            <td class="prices">1.50</td>
+            <td class="price">1.50</td>
         </tr>
         <tr>
             <td class="item">Banana</td>
-            <td class="prices">0.80</td>
+            <td class="price">0.80</td>
         </tr>
         <tr>
             <td class="item">Orange</td>
-            <td class="prices">1.20</td>
+            <td class="price">1.20</td>
         </tr>
     </tbody>
 </table>
@@ -54,7 +58,7 @@
 
 <script>
     document.getElementById('calculateTotal').addEventListener('click', () => {
-        const prices = document.querySelectorAll('.prices');
+        const prices = document.querySelectorAll('.price');
         let total = 0;
 
         prices.forEach(priceCell => {
@@ -76,7 +80,7 @@
         totalRow.innerHTML = `<td>Total</td><td>${total.toFixed(2)}</td>`;
 
         // Append the total row to the table body
-        document.querySelector('#groceryTable tbody').appendChild(totalRow);
+        document.querySelector('#checkoutTable tbody').appendChild(totalRow);
     });
 </script>
 

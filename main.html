@@ -3,86 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grocery Checkout</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        table {
-            width: 60%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f0f0f0;
-        }
-        .total-row {
-            font-weight: bold;
-            background-color: #e0e0e0;
-        }
-    </style>
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="styles.css">
+	<style>
+		body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 20px auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.prices {
+    font-weight: bold;
+}
+
+.total-row {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+
+
+
+
+
+
+	</style>
 </head>
 <body>
-
-<h1>Grocery Checkout</h1>
-<table id="checkoutTable">
-    <thead>
+    <table>
         <tr>
             <th>Item</th>
             <th>Price</th>
         </tr>
-    </thead>
-    <tbody>
         <tr>
-            <td class="item">Apple</td>
-            <td class="price">1.50</td>
+            <td class="item">Item 1</td>
+            <td class="prices">$10.99</td>
         </tr>
         <tr>
-            <td class="item">Banana</td>
-            <td class="price">0.80</td>
+            <td class="item">Item 2</td>
+            <td class="prices">$5.49</td>
         </tr>
         <tr>
-            <td class="item">Orange</td>
-            <td class="price">1.20</td>
+            <td class="item">Item 3</td>
+            <td class="prices">$7.99</td>
         </tr>
-    </tbody>
-</table>
+        <!-- More items... -->
+    </table>
 
-<button id="calculateTotal">Calculate Total</button>
-
-<script>
-    document.getElementById('calculateTotal').addEventListener('click', () => {
-        const prices = document.querySelectorAll('.price');
-        let total = 0;
-
-        prices.forEach(priceCell => {
-            const price = parseFloat(priceCell.textContent);
-            if (!isNaN(price)) {
-                total += price;
-            }
-        });
-
-        // Remove any existing total row before adding a new one
-        const existingTotalRow = document.querySelector('.total-row');
-        if (existingTotalRow) {
-            existingTotalRow.remove();
-        }
-
-        // Create a new row for the total
-        const totalRow = document.createElement('tr');
-        totalRow.className = 'total-row';
-        totalRow.innerHTML = `<td>Total</td><td>${total.toFixed(2)}</td>`;
-
-        // Append the total row to the table body
-        document.querySelector('#checkoutTable tbody').appendChild(totalRow);
-    });
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
